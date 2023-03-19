@@ -1,17 +1,8 @@
 <?php
+session_start();
+require_once 'includes/db.php';
 require_once 'includes/header.php';
 require_once 'includes/navbr.php';
-
-//dataaseconection
-define("HostName", "localhost");
-define("UserName", "root");
-define("Password", "");
-define("DatabaseName", "portfolio_php");
-$db_connect = mysqli_connect(HostName, UserName, Password, DatabaseName);
-
-if (mysqli_connect_errno()) {
-  echo "Failed to connect to MySQL: ";
-}
  $select_query = "SELECT id, name,email, gender From users ";
     $data_from_db = mysqli_query ($db_connect , $select_query);
  ?>
@@ -20,7 +11,19 @@ if (mysqli_connect_errno()) {
         <div class="card border-light mb-3">
             <div class="card-header bg-success border-primary">User_list</div>
             <div class="card-body">
-
+                <div class="alert alert-success">
+                       Total User: <?=$data_from_db->num_rows?>
+                </div>
+                <?php
+                if(isset($_SESSION['status'])){
+                ?>
+                <div class="alert alert-danger">
+                <?php
+                    echo $_SESSION['status'];
+                    unset($_SESSION['status']);
+                ?>
+                </div>
+                <?php } ?>
                 <table class="table">
                     <thead>
                         <tr>
@@ -29,11 +32,12 @@ if (mysqli_connect_errno()) {
                             <th scope="col">name</th>
                             <th scope="col">email</th>
                             <th scope="col">gender</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $serial = 1;
+                            $serial = 1;
                            foreach($data_from_db as $user_value){
                         ?>
 
@@ -43,6 +47,10 @@ if (mysqli_connect_errno()) {
                             <td><?=$user_value['name']?></td>
                             <td><?=$user_value['email']?></td>
                             <td><?=$user_value['gender']?></td>
+                            <td>
+                                <a href="edit_user.php?id=<?=$user_value['id']?>", class="btn btn-outline-info">EDit</a>
+                                <a href="delete_user.php?id=<?=$user_value['id']?>", class="btn btn-outline-danger">Delete</a>
+                            </td>
                         </tr>
                         <?php } ?>
                     </tbody>
