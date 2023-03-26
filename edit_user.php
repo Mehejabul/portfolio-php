@@ -19,6 +19,9 @@
 
                     <input type="hidden" class="form-control" name="id" placeholder="Please enter Full name"
                         value="<?=$assoc['id']?>">
+
+                    <input type="hidden" class="form-control" name="name_old" placeholder="Please enter Full name"
+                        value="<?=$assoc['name']?>">
                     <div class="mb-3">
                         <label class="form-label">Name</label>
                         <input type="text" class="form-control" name="name" placeholder="Please enter Full name"
