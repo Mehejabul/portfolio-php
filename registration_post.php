@@ -8,7 +8,8 @@ require_once 'includes/db.php';
     $gender = $_POST['gender'];
 
   if($password == $confirm_password){
-    $insert_query = " Insert Into users (name,email,password,gender) values ('$name','$email','$password','$gender')";
+     $enctype_password = md5($password);
+    $insert_query = " Insert Into users (name,email,password,gender) values ('$name','$email','$enctype_password','$gender')";
           mysqli_query($db_connect,$insert_query); 
           header('location: user_list.php');
   }else{

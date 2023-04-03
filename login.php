@@ -10,22 +10,22 @@ session_start();
          <div class="card-header bg-success border-primary">login</div>
          <div class="card-body">
 
-            <form method="POST" action ="login_post.php">
-            <div class="mb-3">
+            <form method="POST" action="login_post.php">
+               <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">Email address</label>
-                  <input type="email" class="form-control" name= "email">
-                  
-                       <?php
+                  <input type="email" class="form-control" name="email">
+
+                  <?php
                 if(isset($_SESSION['email_password_error'])){
                 ?>
-               <small class=text-danger>
-                <?php
+                  <small class=text-danger>
+                     <?php
                     echo $_SESSION['email_password_error'];
                     unset($_SESSION['email_password_error']);
                 ?>
-                <?php } ?>
-               </small>
-            </div>
+                     <?php } ?>
+                  </small>
+               </div>
 
                <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Password</label>
