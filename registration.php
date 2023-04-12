@@ -1,8 +1,7 @@
 <?php
     require_once 'includes/header.php';
-    require_once 'includes/navbr.php';
+    require_once 'includes/navbr.php';  
 ?>
-
 <div class="row mt-4">
   <div class="col-lg-6 m-auto">
     <div class="card border-light mb-3">
@@ -43,7 +42,11 @@
             <label class="form-check-label" for="3"> other</label>
           </div>
 
-          <button type="submit" class="btn btn-primary m-auto">Register</button>
+          <div class="mb-3">
+                <div class="g-recaptcha" data-sitekey="6LcQvV4lAAAAAHitqszU9TtZl4g8gW3pVRLCHfak"></div>
+          </div>
+
+          <button type="submit" name="submit" class="btn btn-primary m-auto">Register</button>
         </form>
       </div>
     </div>
