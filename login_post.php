@@ -1,5 +1,8 @@
 <?php
   session_start();
+   if(isset($_SESSION['login_ststus'])){
+       header("location: dashboard.php");     
+   }
 require_once 'includes/db.php';
 
     $email = $_POST['email'];
@@ -10,6 +13,7 @@ require_once 'includes/db.php';
     $after_assoc = mysqli_fetch_assoc($from_db);
 
     if($after_assoc['total'] == 1) {
+      $_SESSION['login_ststus'] = "yes" ;
       $_SESSION['email_address_from_login'] = $email ;
       header("location: dashboard.php");
     }else{

@@ -1,5 +1,9 @@
 <?php
    session_start();
+   if(!isset($_SESSION['login_ststus'])){
+       header("location: login.php");     
+   }
+
     require_once 'includes/header.php';
     require_once 'includes/navbr.php';
     require_once 'includes/db.php';
