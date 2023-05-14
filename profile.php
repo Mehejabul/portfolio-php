@@ -1,11 +1,15 @@
 <?php
 session_start();
+   require_once 'includes/db.php';
    require_once 'includes/header.php';
    require_once 'includes/navbr.php';
+
+   $email_address_from_login = $_SESSION['email_address_from_login'];
+   $select_profile_query = "Select profile_image from users  where email = '$email_address_from_login' ";
 ?>
 
 <div class="row mt-4">
-   <div class="col-lg-6 m-auto">
+   <div class="col-lg-6">
       <div class="card border-light mb-3">
          <div class="card-header bg-secondary border-primary">Change Password</div>
          <div class="card-body">
@@ -27,6 +31,23 @@ session_start();
                </div>
 
                <button type="submit" class="btn btn-success">Change Your password</button>
+            </form>
+         </div>
+      </div>
+   </div>
+   <div class="col-lg-6">
+      <div class="card border-light mb-3">
+         <div class="card-header bg-secondary border-primary">Change Profile picture</div>
+         <div class="card-body">
+            <div class="text-center">
+               <img src="./images/profile_image/<?=mysqli_fetch_assoc(mysqli_query($db_connect, $select_profile_query))['profile_image']?>" width="100">
+            </div>
+            <form method="POST" action="profile_image_post.php" enctype="multipart/form-data">
+               <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Change Profile</label>
+                  <input type="file" class="form-control" name="new_profile_image">
+               </div>
+               <button type="submit" class="btn btn-success">Change profile picture</button>
             </form>
          </div>
       </div>
